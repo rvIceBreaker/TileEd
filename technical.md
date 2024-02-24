@@ -10,12 +10,15 @@ Tile definitions are json objects composed in the following format
         //Group
         <int>: [
             //Tile
-            {
-                tileX: <int>,
-                tileY: <int>,
-                mirrorX: <bool>,
-                mirrorY: <bool>
-            },
+            [
+                {
+                    tileX: <int>,
+                    tileY: <int>,
+                    mirrorX: <bool>,
+                    mirrorY: <bool>
+                },
+                ...
+            ],
             ...
         ],
         ...
