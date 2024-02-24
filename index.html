@@ -1,0 +1,179 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
+        <script src="./js/main.js"></script>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+        <script>
+            tailwind.config = {
+              darkMode: "class",
+              theme: {
+                fontFamily: {
+                  sans: ["Roboto", "sans-serif"],
+                  body: ["Roboto", "sans-serif"],
+                  mono: ["ui-monospace", "monospace"],
+                },
+              },
+              corePlugins: {
+                preflight: false,
+              },
+            };
+          </script>
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .map-container {
+                display: inline-block;
+                position: relative;
+                z-index: 0;
+            }
+
+            .tilemap-container {
+                position: relative;
+                max-width: 530px;
+                max-height: 530px;
+                overflow: scroll;
+            }
+
+            .map-cell {
+                display: inline-block;
+                position: absolute;
+                border: 1px solid green;
+            }
+
+            .map-cell::before {
+                color: white;
+                font-size: 0.75rem;
+                content: attr(data);
+                position: relative;
+                top: 0px;
+                left: 0px;
+            }
+
+            .map-cell-background {
+                display: inline-block;
+                position: absolute;
+                top: -1px;
+                left: -1px;
+                z-index: -1;
+            }
+
+            #tilemap-src {
+                display: inline-block;
+                position: relative;
+                z-index: 0;
+            }
+
+            .tilemap-cell {
+                display: inline-block;
+                position: absolute;
+                /*box-shadow: inset 0 0 1px black;*/                
+                border: 1px solid black;
+            }
+
+            .tilemap-cell-background {
+                display: inline-block;
+                position: absolute;
+                top: -1px;
+                left: -1px;
+                z-index: -1;
+            }
+
+            .tilemap-cell::after {
+                color: white;
+                font-size: 0.75rem;
+                content: attr(data);
+                position: relative;
+                top: 0px;
+                left: 0px;
+            }
+
+            .tilemap-cell.selected {
+                border-color: lightblue !important;
+            }
+
+            .map-cell.collision {
+                border-color: red;
+            }
+        </style>
+    </head>
+    <body style="background: black;">
+        <div class="flex flex-auto min-h-full">
+            <div class="basis-8/12 p-2">
+                <div id="mapcontainer" class="map-container">
+                </div>
+            </div>
+            <div class="basis-4/12">
+                <div class="bg-gray-800 text-gray-400 p-2 min-h-full">
+                    <div class="flex flex-auto flex-col justify-between">
+                        <div class="flex flex-auto flex-col gap-2 my-2">
+                                <label for="tileset-input">Tileset Image (*.png)</label>
+                                <input type="file" id="tileset-input" onchange="editor.OnLoadImage(event)" accept="image/png"
+                                />
+                                <label for="tiledef-input">TileDef File (*.json)</label>
+                                <input type="file" id="tiledef-input" onchange="editor.OnLoadTileDef(event)" accept="application/json"
+                                />
+                                <button type="submit" onclick="editor.OnExportTiledef()" value=""
+                                    class="mt-4 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium leading-normal text-white transition duration-150 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:outline-none active:bg-primary-700"
+                                >
+                                    Save TileDef...
+                                </button>
+                        </div>
+                        <div>
+                            <hr class="my-2 h-0.5 border-t-0 bg-primary-500 opacity-100 dark:opacity-50" />
+                        </div>
+                        <div class="tilemap-container my-4">
+                            <div id="tilemap-src">
+                            </div>
+                        </div>
+                        <div>
+                            <hr class="my-2 h-0.5 border-t-0 bg-primary-500 opacity-100 dark:opacity-50" />
+                            Paint Options
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 my-2">
+                            <div>
+                                <input type="checkbox" id="mirror-x" onchange="editor.OnMirrorXChange(event)">
+                                <label for="mirror-x">Mirror X</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="mirror-y" onchange="editor.OnMirrorYChange(event)">
+                                <label for="mirror-y">Mirror Y</label>
+                            </div>
+                        </div>                        
+                        <div>
+                            <hr class="my-2 h-0.5 border-t-0 bg-primary-500 opacity-100 dark:opacity-50" />
+                            Display Options
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 my-2">
+                            <div class="flex flex-auto flex-col gap-2">
+                                <div>
+                                    <input type="checkbox" id="opt-map-grid" onchange="editor.OnOptShowMapGridChange(event)">
+                                    <label for="opt-map-grid">Show Map Grid</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="opt-map-pattern" onchange="editor.OnOptShowMapPatternChange(event)">
+                                    <label for="opt-map-pattern">Show Map Patterns</label>
+                                </div>
+                            </div>
+                            <div class="flex flex-auto flex-col gap-2">
+                                <div>
+                                    <input type="checkbox" id="opt-tile-grid" onchange="editor.OnOptShowTileGridChange(event)">
+                                    <label for="opt-tile-grid">Show Tile Grid</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="opt-tile-coord" onchange="editor.OnOptShowTileCoordChange(event)">
+                                    <label for="opt-tile-coord">Show Tile Coordinates</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
+    </body>
+</html>
