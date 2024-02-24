@@ -24,7 +24,7 @@ Tile definitions are json objects composed in the following format
 }
 ```
 
-Current, collision is he only supported group selector, resulting in the following pattern groups
+Currently, collision is the only supported group selector, resulting in the following pattern groups
 ```
 //No Collision
 0: [ ... ],
@@ -41,7 +41,7 @@ Cells that are not present do not contribute a value (or contribute 0).
 
 Cell positions are associated with an unsigned integer value based on their adjacency to the target cell. The values are chosen to allow for bitmasking against the sum, granting the fuzzy-match functionality when a definition is missing.
 
-Currently cell position values are defined in the following way
+Currently, cell position values are defined in the following way
 ```
     NW  =   0b00000001, //  dec 1       hex 01
     SE  =   0b00000010, //  dec 2       hex 02
@@ -79,6 +79,7 @@ After summing the pattern value for a target cell, we can check for a valid patt
 
 <details>
 <summary>Code Example</summary>
+
 ```
 if ((testPattern & sum) == testPattern)
 {
@@ -95,6 +96,7 @@ Because each cell adds to the summed pattern value, we can test each pattern and
 
 <details>
 <summary>Code Example</summary>
+
 ```
 int currPattern = 0;
 for (p in patterns)
@@ -111,7 +113,7 @@ for (p in patterns)
 </details>
 
 ## Picking a Tile
-You might have noticed in the TileDef specification that Tile Groups are arrays of Tile Objects; tile Groups allow for multiple tiles to be defined for a pattern.
+You might have noticed in the TileDef specification that Tile Groups are arrays of Tile Objects; Tile Groups allow for multiple tiles to be defined for a pattern.
 
 Currently, the intended use-case is allowing the selection of a random Tile object.
 
