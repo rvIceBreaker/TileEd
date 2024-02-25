@@ -1,6 +1,8 @@
 # Tile Editor
 A prototype implementation of a 9-way dynamic tilemap algorithm(?) and pattern editor written in html and vanilla javascript.
 
+This was written as a contribution to [uwnh-remake](https://github.com/spirodonfl/uwnh-remake) by [SpirodonFL](https://github.com/spirodonfl)
+
 ## Usage
 The editor can be run offline by opening the index.html directly, or it can be found at [the github.io page](https://rvicebreaker.github.io/TileEd)
 
