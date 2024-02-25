@@ -2,7 +2,7 @@
 A prototype implementation of a 9-way dynamic tilemap algorithm(?) and pattern editor written in html and vanilla javascript.
 
 ## Usage
-The editor can be run offline by opening the index.html directly, or it can be found at (link)
+The editor can be run offline by opening the index.html directly, or it can be found at [the github.io page](https://rvicebreaker.github.io/TileEd)
 
 ### Current Limitations
 - Tile size is forced to `64px` x `64px`
