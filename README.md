@@ -28,7 +28,11 @@ You can browse for a TileDef .json file if you have an existing Tile Definition 
 
 The `Save TileDef...` button will export the current TileDef data to a file.
 
-Clicking the cells in the map view (the green cells) will toggle collision, and change the pattern values of the revelant cells.
+Clicking the cells in the map view (the green cells) will toggle collision, and change the pattern values of the revelant cells. Red means that cell has collision, green means it does not.
+
+Clicking cells in the tile painter will mark that tile as the active tile for assigning to a pattern.
+
+Right-clicking a tile in the map view will assign the active tile to the tile pattern.
 
 The editor initializes with sample data in the map view.
 
