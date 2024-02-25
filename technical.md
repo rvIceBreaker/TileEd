@@ -109,7 +109,7 @@ for (p in patterns)
     {
         if (p > currPattern)
         {
-            p = currPattern;
+            currPattern = p;
         }
     }
 }
