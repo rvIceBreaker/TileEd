@@ -13,11 +13,11 @@ The editor can be run offline by opening the index.html directly, or it can be f
 ### Patterns At a Glance
 Each cell of the map calculates a value based on the configuration of the cells surrounding it and some additional properties of cell in question.
 
-This value is used to determine a pattern for the given tile, and additional properties can be used to select a sub-group which defines the actual slice of the tileset to display.
+This value is used to determine a pattern for the given cell, and additional properties can be used to select a tile sub-group which defines the actual slice of the tileset to display.
 
-Currently the only additional property is whether the current tile has collision or not, but support could be added for more.
+Currently the only additional property is whether the current cell has collision or not, but support could be added for more.
 
-The more complicated the configuration of neighboring tiles, the higher the value of the pattern.
+The more complicated the configuration of neighboring cells, the higher the value of the tile pattern.
 
 If an exact match for the pattern isn't found, a lower-value pattern will be used if it is similar enough; this allows for defining exact results for a complex configuration of cells, while effectively fuzzy-matching if an exact pattern isn't defined.
 
@@ -32,14 +32,14 @@ The `Save TileDef...` button will export the current TileDef data to a file.
 
 Clicking the cells in the map view (the green cells) will toggle collision, and change the pattern values of the revelant cells. Red means that cell has collision, green means it does not.
 
-Clicking cells in the tile painter will mark that tile as the active tile for assigning to a pattern.
+Clicking tiles in the tile painter will mark that tile as the active tile for assigning to a pattern.
 
 Right-clicking a tile in the map view will assign the active tile to the tile pattern.
 
 The editor initializes with sample data in the map view.
 
 ### Defining Patterns
-Its important to keep in mind that pattern matching is based on the configuration of tiles in any 3x3 space, with the center tile being the target cell.
+Its important to keep in mind that pattern matching is based on the configuration of cells in any 3x3 space, with the center cell being the target cell.
 
 I recommend starting your tile definitions by working in a 3x3 space and starting with simple configurations and working towards more complex ones; T shapes, cross shapes, corners, C shapes, U shapes, etc. and defining the desired slices for those tiles first.
 
