@@ -6,7 +6,7 @@ The editor can be run offline by opening the index.html directly, or it can be f
 
 ### Current Limitations
 - Tile size is forced to `64px` x `64px`
-- Map size is forced to `8` x `16`
+- Map size is forced to `16` x `8`
 
 ### Patterns At a Glance
 Each cell of the map calculates a value based on the configuration of the cells surrounding it and some additional properties of cell in question.
