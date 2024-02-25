@@ -9,8 +9,9 @@ Tile definitions are json objects composed in the following format
     <int>: [
         //Group
         <int>: [
-            //Tile
+            //Tile Set
             [
+                //Tile
                 {
                     tileX: <int>,
                     tileY: <int>,
@@ -115,8 +116,8 @@ for (p in patterns)
 ```
 </details>
 
-## Picking a Tile
-You might have noticed in the TileDef specification that Tile Groups are arrays of Tile Objects; Tile Groups allow for multiple tiles to be defined for a pattern.
+## Picking a Tile Set
+You might have noticed in the TileDef specification that Tile Groups are arrays of Tile Objects; Tile Groups allow for multiple tiles to be defined for a pattern, referred to as a Tile Set.
 
 Currently, the intended use-case is allowing the selection of a random Tile object.
 
